@@ -74,8 +74,10 @@ export const signIn = async (req: express.Request, res: express.Response) => {
     user.authentication.sessionId = authentication(salt, user._id.toString());
 
     await user.save();
-
+    
+    console.log(process.env.DEV_OR_PRO === 'DEV'&& 'localhost');
     res.cookie('DEVIN-AUTH', user.authentication.sessionId, { domain: `${process.env.DEV_OR_PRO === 'DEV'&& 'localhost'}`, path: '/' });
+    
     return res.status(200).json(user);
   } catch (error) {
     console.log(error);
