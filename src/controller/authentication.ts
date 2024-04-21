@@ -75,8 +75,8 @@ export const signIn = async (req: express.Request, res: express.Response) => {
 
     await user.save();
     
-    console.log(process.env.DEV_OR_PRO === 'DEV'&& 'localhost');
-    res.cookie('DEVIN-AUTH', user.authentication.sessionId, { domain: `${process.env.DEV_OR_PRO === 'DEV'&& 'localhost'}`, path: '/' });
+    res.cookie('DEVIN-AUTH', user.authentication.sessionId, { domain: `${req.hostname}`, path: '/' });
+    console.log(req.hostname);
     
     return res.status(200).json(user);
   } catch (error) {
