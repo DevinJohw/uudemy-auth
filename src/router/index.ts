@@ -1,22 +1,11 @@
 import express from 'express';
+import { signIn, signOut, signUp, signedIn } from '../controller/authentication';
 
 const router = express.Router();
 
-router.put('/auth/signup', (req: express.Request, res: express.Response) => {
-  // const { username, email, password } = req.body;
-  res.status(201).json(req.body).end();
-});
-
-router.post('/auth/signin', (req: express.Request, res: express.Response) => {
-  res.status(200).json(req.body).end();
-});
-
-router.get('/auth/signedin', (req: express.Request, res: express.Response) => {
-  res.status(200).json(req.cookies);
-});
-
-router.put('/auth/signout',(req: express.Request, res: express.Response) => {
-  res.status(200).json(req.cookies);
-} )
+router.put('/auth/signup', signUp);
+router.post('/auth/signin', signIn);
+router.get('/auth/signedin', signedIn);
+router.put('/auth/signout', signOut);
 
 export default router;
