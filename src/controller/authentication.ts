@@ -2,7 +2,6 @@ import express from 'express';
 import { createUser, getUserByEmail, getUserBySessionId } from '../db/user';
 import { authentication, random } from '../helpers';
 import errors from '../errors';
-import { isSignedIn } from '../middleware';
 
 export const signUp = async (req: express.Request, res: express.Response) => {
   try {
