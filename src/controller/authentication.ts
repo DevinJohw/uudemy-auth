@@ -87,7 +87,7 @@ export const signOut = async (req: express.Request, res: express.Response) => {
   try {
     const sessionId = req.cookies['DEVIN-AUTH'];
     if (!sessionId) {
-      return res.status(400).json(errors[8]);
+      return res.status(400).json(errors[9]);
     }
     const signedInUser = await getUserBySessionId(sessionId).select('+authentication.sessionId');
     if (!signedInUser) {
