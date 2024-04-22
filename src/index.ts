@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 app.use(
   cors({
