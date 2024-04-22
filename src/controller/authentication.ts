@@ -75,7 +75,8 @@ export const signIn = async (req: express.Request, res: express.Response) => {
 
     await user.save();
 
-    res.cookie('DEVIN-AUTH', user.authentication.sessionId, { domain: `${req.hostname}`, path: '/', maxAge: 24 * 60 * 60 * 7, sameSite: 'none', httpOnly: true, secure: true });
+    res.cookie('DEVIN-AUTH', user.authentication.sessionId, { path: '/', maxAge: 7 * 24 * 60 * 60 * 1000, sameSite: 'none', httpOnly: true, secure: true });
+
     console.log(req.hostname);
 
     return res.status(200).json(user);
