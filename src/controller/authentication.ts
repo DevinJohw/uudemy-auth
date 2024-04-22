@@ -114,15 +114,22 @@ export const signedIn = async (req: express.Request, res: express.Response) => {
   try {
     const sessionId = req.cookies['DEVIN-AUTH'];
     if (!sessionId) {
-      return res.status(400).json(errors[8]);
+      return res.status(200).json({
+        signedIn: false,
+      });
     }
     const existingUser = await getUserBySessionId(sessionId);
 
     if (!existingUser) {
-      return res.status(400).json(errors[9]);
+      return res.status(200).json({
+        signedIn: false,
+      });
     }
 
-    return res.status(200).json(existingUser);
+    return res.status(200).json({
+      signedIn: true,
+      user: existingUser,
+    });
   } catch (error) {
     console.log(error);
     return res.status(400).json(errors[0]);
